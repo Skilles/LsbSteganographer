@@ -1,11 +1,11 @@
 
 namespace Stenographer
 {
-    public partial class Stenographer : Form
+    public partial class Steganographer : Form
     {
         private LsbProcessor _lsbProcessor;
 
-        public Stenographer()
+        public Steganographer()
         {
             InitializeComponent();
             _lsbProcessor = new LsbProcessor(pictureBox.Width, pictureBox.Height);

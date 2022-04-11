@@ -1,6 +1,6 @@
 ﻿namespace Stenographer
 {
-    partial class Stenographer
+    partial class Steganographer
     {
         /// <summary>
         ///  Required designer variable.
@@ -145,8 +145,8 @@
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.encodeButton);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Stenographer";
-            this.Text = "Stenographer";
+            this.Name = "Steganographer";
+            this.Text = "Steganographer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
