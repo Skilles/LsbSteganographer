@@ -1,73 +1,68 @@
+namespace Stenographer;
 
-namespace Stenographer
+public partial class Steganographer : Form
 {
-    public partial class Steganographer : Form
+    private readonly LsbProcessor _lsbProcessor;
+
+    public Steganographer()
     {
-        private LsbProcessor _lsbProcessor;
+        InitializeComponent();
+        _lsbProcessor = new LsbProcessor(pictureBox.Width, pictureBox.Height);
+        UpdateStatus();
+    }
 
-        public Steganographer()
+    private void encodeButton_Click(object sender, EventArgs e)
+    {
+        try
         {
-            InitializeComponent();
-            _lsbProcessor = new LsbProcessor(pictureBox.Width, pictureBox.Height);
-            UpdateStatus();
+            _lsbProcessor.EncodeText(textBox.Text);
+        }
+        catch (InvalidOperationException er)
+        {
+            Console.WriteLine(er);
+            return;
         }
 
-        private void encodeButton_Click(object sender, EventArgs e)
+        pictureBox.Image?.Dispose();
+        pictureBox.Image = _lsbProcessor.GetImage();
+        UpdateStatus();
+    }
+
+    private void decodeButton_Click(object sender, EventArgs e)
+    {
+        try
         {
-            try
-            {
-                _lsbProcessor.EncodeText(textBox.Text);
-            }
-            catch (InvalidOperationException er)
-            {
-                Console.WriteLine(er);
-                return;
-            }
-            pictureBox.Image?.Dispose();
-            pictureBox.Image = _lsbProcessor.GetImage();
-            UpdateStatus();
+            var text = _lsbProcessor.DecodeText();
+            textBox.Text = text;
+        }
+        catch (InvalidOperationException er)
+        {
+            Console.WriteLine(er);
         }
 
-        private void decodeButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var text = _lsbProcessor.DecodeText();
-                textBox.Text = text;
-            }
-            catch (InvalidOperationException er)
-            {
-                Console.WriteLine(er);
-            }
-            UpdateStatus();
-        }
+        UpdateStatus();
+    }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                _lsbProcessor.SaveImage(saveFileDialog.FileName);
-            }
-        }
+    private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (saveFileDialog.ShowDialog() == DialogResult.OK) _lsbProcessor.SaveImage(saveFileDialog.FileName);
+    }
 
-        private void loadToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+    private void loadToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (File.Exists(openFileDialog.FileName))
             {
-                if (File.Exists(openFileDialog.FileName))
-                {
-                    _lsbProcessor.LoadImage(openFileDialog.FileName);
-                    pictureBox.Image?.Dispose();
-                    pictureBox.Image = _lsbProcessor.GetImage();
-                    UpdateStatus();
-                    saveFileDialog.FileName = $"{Path.GetFileNameWithoutExtension(openFileDialog.FileName)}_encoded.png";
-                }
+                _lsbProcessor.LoadImage(openFileDialog.FileName);
+                pictureBox.Image?.Dispose();
+                pictureBox.Image = _lsbProcessor.GetImage();
+                UpdateStatus();
+                saveFileDialog.FileName = $"{Path.GetFileNameWithoutExtension(openFileDialog.FileName)}_encoded.png";
             }
-        }
+    }
 
-        private void UpdateStatus()
-        {
-            statusLabel.Text = $"Status: {_lsbProcessor.Status.ToString()}";
-        }
+    private void UpdateStatus()
+    {
+        statusLabel.Text = $@"Status: {_lsbProcessor.Status}";
     }
 }

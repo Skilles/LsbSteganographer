@@ -45,7 +45,7 @@
             // 
             // encodeButton
             // 
-            this.encodeButton.Location = new System.Drawing.Point(42, 337);
+            this.encodeButton.Location = new System.Drawing.Point(76, 466);
             this.encodeButton.Name = "encodeButton";
             this.encodeButton.Size = new System.Drawing.Size(134, 64);
             this.encodeButton.TabIndex = 0;
@@ -55,15 +55,17 @@
             // 
             // pictureBox
             // 
-            this.pictureBox.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox.ErrorImage = global::Stenographer.Properties.Resources.error;
+            this.pictureBox.InitialImage = global::Stenographer.Properties.Resources.error;
+            this.pictureBox.Location = new System.Drawing.Point(12, 28);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(419, 207);
+            this.pictureBox.Size = new System.Drawing.Size(480, 320);
             this.pictureBox.TabIndex = 2;
             this.pictureBox.TabStop = false;
             // 
             // decodeButton
             // 
-            this.decodeButton.Location = new System.Drawing.Point(255, 337);
+            this.decodeButton.Location = new System.Drawing.Point(289, 466);
             this.decodeButton.Name = "decodeButton";
             this.decodeButton.Size = new System.Drawing.Size(134, 64);
             this.decodeButton.TabIndex = 3;
@@ -74,7 +76,7 @@
             // textBox
             // 
             this.textBox.AcceptsReturn = true;
-            this.textBox.Location = new System.Drawing.Point(42, 225);
+            this.textBox.Location = new System.Drawing.Point(76, 354);
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
             this.textBox.PlaceholderText = "Enter text to encrypt into the image";
@@ -97,7 +99,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(443, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(507, 24);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -126,18 +128,18 @@
             // 
             // statusLabel
             // 
-            this.statusLabel.Location = new System.Drawing.Point(42, 410);
+            this.statusLabel.Location = new System.Drawing.Point(76, 539);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(347, 15);
             this.statusLabel.TabIndex = 6;
-            this.statusLabel.Text = "Status: ";
+            this.statusLabel.Text = "Status:";
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // Stenographer
+            // Steganographer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 434);
+            this.ClientSize = new System.Drawing.Size(507, 577);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.textBox);
